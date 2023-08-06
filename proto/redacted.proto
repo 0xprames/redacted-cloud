@@ -1,0 +1,32 @@
+syntax = "proto3";
+package proto;
+
+option go_package = "proto/";
+
+service Redacted {
+    rpc CreateRedacted (CreateRedactedRequest) returns (CreateRedactedResponse) {}
+    rpc DeleteRedacted (DeleteRedactedRequest) returns (DeleteRedactedResponse) {}
+}
+
+message CreateRedactedRequest {
+    int64 org_id = 1;
+    int64 Redacted_cluster_id= 2;
+    int64 replicas = 3;
+}
+
+message CreateRedactedResponse {
+    string status = 1;
+    int64 org_id = 2;
+    int64 Redacted_cluster_id = 3;   
+}
+
+message DeleteRedactedRequest {
+    int64 org_id = 1;
+    int64 Redacted_cluster_id= 2;
+}
+
+message DeleteRedactedResponse {
+    string status = 1;
+    int64 org_id = 2;
+    int64 Redacted_cluster_id = 3; 
+}

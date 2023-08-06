@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: Redacted-driver
+spec:
+  containers:
+  - name: Redacted-driver
+    image: Redacted-driver:test
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 80

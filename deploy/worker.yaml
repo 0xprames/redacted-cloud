@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: Redacted-worker
+  labels:
+    name: Redacted
+spec:
+  hostname: worker
+  subdomain: Redacted
+  containers:
+  - name: Redacted-worker
+    image: Redacted-worker:test
+    imagePullPolicy: IfNotPresent
+    ports: 
+    - containerPort: 7793
+---
+# Headless service (ClusterIP is None) to enable dns for worker pod from driver side
+# see: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-hostname-and-subdomain-fields
+apiVersion: v1
+kind: Service
+metadata:
+  name: Redacted
+spec:
+  selector:
+  # if this is not set, service wont associate with pod, 
+  # even if pod doesn't have labels - set labels on pod as the same k/v as selector here
+  # required for pod dns to work
+    name: Redacted 
+  clusterIP: None
+  ports:
+  - name: what
+    port: 7792
